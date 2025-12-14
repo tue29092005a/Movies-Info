@@ -1,13 +1,11 @@
-import { useState } from 'react'
-import './App.css'
-import {Button} from "@/components/ui/button.jsx"
-import {DiamondPlus} from "lucide-react"
-function App() {
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import Layout from './layout/Layout';
 
-
+export default function  App(){
   return (
-   <Button><DiamondPlus/></Button>
+  <>
+    <Layout/>
+  </>
   )
 }
-
-export default App
