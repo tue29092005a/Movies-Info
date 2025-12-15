@@ -70,3 +70,90 @@ export async function GET_userFavorites() {
     return null;
   }
 }
+
+
+/**
+ * Lấy danh sách phim yêu thích
+ */
+export async function GET_userFavorites() {
+  try {
+    const userToken = localStorage.getItem("user_access_token");
+    if (!userToken) return null;
+
+    const res = await fetch(`${API_URL}/users/favorites`, {
+      method: "GET",
+      headers: {
+        "accept": "application/json",
+        "x-app-token": TOKEN_AUTH,
+        "Authorization": `Bearer ${userToken}`
+      },
+    });
+
+    if (!res.ok) throw new Error(res.status);
+    return await res.json();
+  } catch (err) {
+    console.error("Lỗi lấy Favorites:", err.message);
+    return null;
+  }
+}
+
+/**
+ * Thêm phim vào danh sách yêu thích
+ * @param {string} movieId - ID phim (VD: tt0012349)
+ */
+export async function POST_addToFavorites(movieId) {
+  try {
+    const userToken = localStorage.getItem("user_access_token");
+    if (!userToken) {
+        alert("Bạn cần đăng nhập để thực hiện chức năng này!");
+        return false;
+    }
+
+    const res = await fetch(`${API_URL}/users/favorites/${movieId}`, {
+      method: "POST",
+      headers: {
+        "accept": "*/*",
+        "x-app-token": TOKEN_AUTH,
+        "Authorization": `Bearer ${userToken}`
+      },
+      body: "" // Curl gửi -d '' (body rỗng)
+    });
+
+    if (!res.ok) {
+        // Nếu đã tồn tại hoặc lỗi khác
+        const errorText = await res.text(); 
+        throw new Error(errorText || res.status);
+    }
+
+    return true; // Thành công
+  } catch (err) {
+    console.error("Lỗi thêm Favorite:", err.message);
+    return false;
+  }
+}
+
+/**
+ * Xóa phim khỏi danh sách yêu thích
+ * @param {string} movieId - ID phim (VD: tt0012349)
+ */
+export async function DELETE_removeFromFavorites(movieId) {
+  try {
+    const userToken = localStorage.getItem("user_access_token");
+    if (!userToken) return false;
+
+    const res = await fetch(`${API_URL}/users/favorites/${movieId}`, {
+      method: "DELETE",
+      headers: {
+        "accept": "*/*",
+        "x-app-token": TOKEN_AUTH,
+        "Authorization": `Bearer ${userToken}`
+      },
+    });
+
+    if (!res.ok) throw new Error(res.status);
+    return true;
+  } catch (err) {
+    console.error("Lỗi xóa Favorite:", err.message);
+    return false;
+  }
+}
