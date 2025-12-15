@@ -7,9 +7,7 @@ import React from "react";
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ThemeProvider>
-      <div className="card bg-white dark:bg-slate-800 shadow rounded">
-        <App />
-      </div>
+        <App/>
     </ThemeProvider>
   </React.StrictMode>
 );
