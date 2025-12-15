@@ -17,25 +17,44 @@ import {
 // 1. Định nghĩa Schema với Zod
 const formSchema = z.object({
   query: z.string().optional(), // Cho phép rỗng nếu muốn clear search
+  
 });
 
 export function SearchForm({ className }) {
 
-
+  const [searchParams,setSearchParams] = useSearchParams();
   // 2. Khởi tạo form
   const form = useForm({
     resolver: zodResolver(formSchema),
-    // defaultValues: {
-    //   query: searchParams.get("q") || "", // Lấy giá trị ban đầu từ URL
-    // },
+    defaultValues: {
+      query: searchParams.get("q") || "", // Lấy giá trị ban đầu từ URL
+    },
   });
 
   // Đồng bộ: Nếu URL thay đổi (ví dụ user bấm Back), cập nhật lại ô Input
-
+  useEffect(()=>{
+    form.setValue("query", searchParams.get("q") || "")
+  },[searchParams])
 
   // 3. Xử lý khi Submit
   function onSubmit(data) {
-
+    // URLSearchParams
+    const params = new URLSearchParams(searchParams);
+    // neu co thi set params 
+    if(data.query && data.query.trim()){
+      params.set("q", data.query.trim());
+    }
+    // neu khong thi xoa
+    else{
+      params.delete("q");
+    }
+    // neu co trang thi reset lai bang 1
+    if(params.has("page"))
+    {
+      params.set("page","1")
+    }
+    // setSearchParams
+    setSearchParams(params);
   }
 
   return (
