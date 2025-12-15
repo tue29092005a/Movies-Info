@@ -9,7 +9,7 @@ import {
   GET_movieReviews,
 } from "@/api/movies";
 import { useState } from "react";
-
+import { Display_MovieDetail } from "./movies_display/MovieDetail";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 export default function App() {
@@ -18,6 +18,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashboard_movie />} />
+          <Route path="/movies/:id" element ={<Display_MovieDetail/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

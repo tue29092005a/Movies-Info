@@ -10,7 +10,7 @@ export function MovieCard({ movie }) {
   const { id, title, image, short_description, rate, genres } = movie;
 
   return (
-    <Link to={`/movie/${id}`} className="block h-full w-full">
+    <Link to={`/movies/${id}`} className="block h-full w-full">
       {/* Container chính: group để bắt sự kiện hover */}
       <Card className="group relative h-full w-full overflow-hidden border-0 bg-black/5 shadow-md rounded-lg p-0">
         <CardContent className="p-0  h-full">
