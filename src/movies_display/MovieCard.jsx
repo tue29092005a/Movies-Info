@@ -12,11 +12,11 @@ export function MovieCard({ movie }) {
   return (
     <Link to={`/movie/${id}`} className="block h-full w-full">
       {/* Container chính: group để bắt sự kiện hover */}
-      <Card className="group relative h-full w-full overflow-hidden border-0 bg-black/5 shadow-md rounded-lg">
-        <CardContent className="p-0 h-full">
+      <Card className="group relative h-full w-full overflow-hidden border-0 bg-black/5 shadow-md rounded-lg p-0">
+        <CardContent className="p-0  h-full">
           
           {/* 1. ẢNH POSTER (movie.image) */}
-          <div className="relative aspect-[2/3] w-full overflow-hidden">
+          <div className="relative aspect-2/3 w-full overflow-hidden">
             <img
               src={image}
               alt={title}
@@ -31,7 +31,7 @@ export function MovieCard({ movie }) {
             </div>
 
             {/* 2. OVERLAY THÔNG TIN (Trượt từ dưới lên khi Hover) */}
-            <div className="absolute bottom-0 left-0 w-full translate-y-full bg-gradient-to-t from-black via-black/80 to-transparent p-4 text-white opacity-0 transition-all duration-300 ease-in-out group-hover:translate-y-0 group-hover:opacity-100">
+            <div className="absolute bottom-0 left-0 w-full translate-y-full bg-linear-to-t from-black via-black/80 to-transparent p-4 text-white opacity-0 transition-all duration-300 ease-in-out group-hover:translate-y-0 group-hover:opacity-100">
               
               <div className="flex flex-col space-y-2">
                 {/* Title */}

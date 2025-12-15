@@ -1,19 +1,25 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
-import Layout from "./layout/Layout";
-import { GET_movies,GET_topRatedMovies,GET_movieDetail,GET_mostPopularMovies,GET_movieReviews } from "@/api/movies";
+import Layout, { Dashboard_movie } from "./layout/Layout";
+import {
+  GET_movies,
+  GET_topRatedMovies,
+  GET_movieDetail,
+  GET_mostPopularMovies,
+  GET_movieReviews,
+} from "@/api/movies";
 import { useState } from "react";
 
-import { BrowserRouter,Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 export default function App() {
   return (
-   <BrowserRouter>
+    <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />} />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Dashboard_movie />} />
+        </Route>
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
-
-

@@ -15,28 +15,8 @@ import {
   GET_mostPopularMovies,
   GET_movieReviews,
 } from "@/api/movies";
-import { useState,useEffect } from "react";
-export function CarouselDemo() {
-  return (
-    <Carousel className="w-full max-w-xs">
-      <CarouselContent>
-        {Array.from({ length: 5 }).map((_, index) => (
-          <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-            <div className="p-1">
-              <Card>
-                <CardContent className="flex aspect-square items-center justify-center p-6">
-                  <span className="text-4xl font-semibold">{index + 1}</span>
-                </CardContent>
-              </Card>
-            </div>
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
-    </Carousel>
-  );
-}
+import { useState, useEffect } from "react";
+
 
 export function Carousel_topMovie({ list_movies }) {
   if (!list_movies || list_movies.length === 0) return null;
@@ -59,26 +39,29 @@ export function Display_topMovie() {
   const [topMovies, setTopMovies] = useState([]);
   useEffect(() => {
     async function getMovie() {
-      const dataMovie = await GET_mostPopularMovies(1, 30);
-      const newTopMovies = dataMovie.data;
-      if (newTopMovies) {
-        setTopMovies([...newTopMovies]);
+      const promisePage1 = GET_mostPopularMovies(1, 12);
+      const promisePage2 = GET_mostPopularMovies(2, 12);
+      const [data1, data2] = await Promise.all([promisePage1, promisePage2]);
+      const list1 = Array.isArray(data1.data) ? data1.data : [];
+      const list2 = Array.isArray(data2.data) ? data2.data : [];
+      const topMovies = [...list1, ...list2];
+      if(topMovies){
+        setTopMovies(topMovies)
       }
     }
     getMovie();
   }, []);
   return (
-    <div className ="flex justify-center">
+    <div className="flex justify-center">
       <Carousel_topMovie list_movies={topMovies} />
     </div>
   );
 }
 
-
-export function Carousel_popularMovie({ list_movies }) {
+export function Carousel_3_Movies({ list_movies }) {
   if (!list_movies || list_movies.length === 0) return null;
   return (
-    <Carousel className="w-full max-w-xs">
+    <Carousel className="w-[80%] max-w ">
       <CarouselContent>
         {list_movies.map((movie, index) => (
           <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
@@ -96,17 +79,45 @@ export function Display_popularMovie() {
   const [topMovies, setTopMovies] = useState([]);
   useEffect(() => {
     async function getMovie() {
-      const dataMovie = await GET_mostPopularMovies(1, 30);
-      const newTopMovies = dataMovie.data;
-      if (newTopMovies) {
-        setTopMovies([...newTopMovies]);
+      const promisePage1 = GET_mostPopularMovies(1, 12);
+      const promisePage2 = GET_mostPopularMovies(2, 12);
+      const [data1, data2] = await Promise.all([promisePage1, promisePage2]);
+      const list1 = Array.isArray(data1.data) ? data1.data : [];
+      const list2 = Array.isArray(data2.data) ? data2.data : [];
+      const topMovies = [...list1, ...list2];
+      if(topMovies){
+        setTopMovies(topMovies)
       }
     }
     getMovie();
   }, []);
   return (
-    <div className ="flex justify-center">
-      <Carousel_popularMovie list_movies={topMovies} />
+    <div className="flex justify-center">
+      <Carousel_3_Movies list_movies={topMovies} />
+    </div>
+  );
+}
+
+
+export function Display_topRating() {
+  const [topMovies, setTopMovies] = useState([]);
+  useEffect(() => {
+    async function getMovie() {
+      const promisePage1 = GET_topRatedMovies('IMDB_TOP_50',1, 12);
+      const promisePage2 = GET_topRatedMovies('IMDB_TOP_50',2, 12);
+      const [data1, data2] = await Promise.all([promisePage1, promisePage2]);
+      const list1 = Array.isArray(data1.data) ? data1.data : [];
+      const list2 = Array.isArray(data2.data) ? data2.data : [];
+      const topMovies = [...list1, ...list2];
+      if(topMovies){
+        setTopMovies(topMovies)
+      }
+    }
+    getMovie();
+  }, []);
+  return (
+    <div className="flex justify-center">
+      <Carousel_3_Movies list_movies={topMovies} />
     </div>
   );
 }
