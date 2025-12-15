@@ -4,6 +4,8 @@ import "./index.css";
 import App from "./App.jsx";
 import { ThemeProvider } from "./context/ThemeContext";
 import React from "react";
+
+
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ThemeProvider>

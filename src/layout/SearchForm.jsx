@@ -1,0 +1,69 @@
+import React, { useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { Search } from "lucide-react"; // Icon kính lúp
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+} from "@/components/ui/form";
+
+// 1. Định nghĩa Schema với Zod
+const formSchema = z.object({
+  query: z.string().optional(), // Cho phép rỗng nếu muốn clear search
+});
+
+export function SearchForm({ className }) {
+
+
+  // 2. Khởi tạo form
+  const form = useForm({
+    resolver: zodResolver(formSchema),
+    // defaultValues: {
+    //   query: searchParams.get("q") || "", // Lấy giá trị ban đầu từ URL
+    // },
+  });
+
+  // Đồng bộ: Nếu URL thay đổi (ví dụ user bấm Back), cập nhật lại ô Input
+
+
+  // 3. Xử lý khi Submit
+  function onSubmit(data) {
+
+  }
+
+  return (
+    <div className={className}>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="flex w-full items-center space-x-2">
+          <FormField
+            control={form.control}
+            name="query"
+            render={({ field }) => (
+              <FormItem className="relative w-full">
+                <FormControl>
+                  <div className="relative">
+                    {/* Icon nằm đè lên Input */}
+                    <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                    <Input
+                      placeholder="Tìm kiếm phim..."
+                      className="pl-9 bg-background" // pl-9 để chữ không đè lên icon
+                      {...field}
+                    />
+                  </div>
+                </FormControl>
+              </FormItem>
+            )}
+          />
+          <Button type="submit">Tìm kiếm</Button>
+        </form>
+      </Form>
+    </div>
+  );
+}
