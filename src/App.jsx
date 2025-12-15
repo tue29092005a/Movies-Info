@@ -11,7 +11,7 @@ import {
 import { useState } from "react";
 import { Display_MovieDetail } from "./movies_display/MovieDetail";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import { Display_CharacterDetail } from "./character/DetailCharacter";
 export default function App() {
   return (
     <BrowserRouter>
@@ -19,6 +19,7 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashboard_movie />} />
           <Route path="/movies/:id" element ={<Display_MovieDetail/>}/>
+          <Route path="/persons/:id" element={<Display_CharacterDetail/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

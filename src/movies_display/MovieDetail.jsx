@@ -10,6 +10,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import{useState, useEffect} from 'react'
 import { useParams } from "react-router-dom";
 import { GET_movieDetail } from "@/api/movies";
+import { CharacterCard, Link_CharacterCard } from "@/character/CharacterCard";
 export default function MovieDetail({ movie }) {
   if (!movie) return null;
 
@@ -70,7 +71,7 @@ export default function MovieDetail({ movie }) {
           {/* Genres */}
           <div className="flex flex-wrap gap-2">
             {movie.genres?.map((genre) => (
-              <Badge key={genre} variant="secondary" className="text-sm px-3 py-1">
+              <Badge key={genre}  variant="secondary" className="text-sm px-3 py-1">
                 {genre}
               </Badge>
             ))}
@@ -161,28 +162,7 @@ export default function MovieDetail({ movie }) {
         <TabsContent value="cast">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {movie.actors?.map((actor) => (
-              <Card key={actor.id} className="overflow-hidden hover:shadow-md transition-shadow">
-                <div className="aspect-3/4 overflow-hidden bg-muted">
-                  {actor.image ? (
-                    <img 
-                      src={actor.image} 
-                      alt={actor.name} 
-                      className="w-full h-full object-cover transition-transform hover:scale-105"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-                       No Image
-                    </div>
-                  )}
-                </div>
-                <div className="p-3">
-                  <h3 className="font-bold text-sm truncate" title={actor.name}>{actor.name}</h3>
-                  <p className="text-xs text-muted-foreground truncate" title={actor.character}>
-                    as {actor.character}
-                  </p>
-                </div>
-              </Card>
+                <Link_CharacterCard actor={actor}/>
             ))}
           </div>
         </TabsContent>
