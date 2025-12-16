@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
 import { GET_userProfile } from "@/api/user/profile";
-import { Calendar, Mail, Phone, User, Clock, LogOut } from "lucide-react";
+import { Calendar, Mail, Phone, User, Clock, LogOut,Heart } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-
+import {Link} from "react-router-dom"
 
 export default function UserProfile() {
   const [profile, setProfile] = useState(null);
@@ -121,6 +121,10 @@ export default function UserProfile() {
                         <p className="text-xs font-medium text-muted-foreground uppercase">Ngày tham gia</p>
                         <p className="font-medium">{formatDate(profile.created_at)}</p>
                     </div>
+                </div>
+                <div>
+                  <Link  className="flex items-center gap-4 p-4 rounded-lg bg-muted/50" to="/user/favorites">
+                  <Heart/>Phim yeu thich</Link>
                 </div>
             </div>
         </CardContent>

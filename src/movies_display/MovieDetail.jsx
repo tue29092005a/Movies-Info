@@ -11,12 +11,14 @@ import{useState, useEffect} from 'react'
 import { useParams } from "react-router-dom";
 import { GET_movieDetail } from "@/api/movies";
 import { CharacterCard, Link_CharacterCard } from "@/character/CharacterCard";
+import { AddToFavoriteBtn } from "@/user/AddFavoriteButton";
 export default function MovieDetail({ movie }) {
   if (!movie) return null;
 
   return (
     <div className="container mx-auto py-8 px-4 md:px-8 max-w-7xl">
       <div className="flex flex-col md:flex-row gap-8 mb-8">
+        <AddToFavoriteBtn movie={movie}/>
         <div className="shrink-0 mx-auto md:mx-0 w-62.5 md:w-75">
           <img
             src={movie.image}
