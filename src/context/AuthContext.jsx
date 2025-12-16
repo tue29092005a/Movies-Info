@@ -9,8 +9,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
-  
-  // Kiểm tra đăng nhập khi F5 trang
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const token = localStorage.getItem("user_access_token");
     const storedUser = localStorage.getItem("user_info");
@@ -18,6 +17,7 @@ export const AuthProvider = ({ children }) => {
       setIsAuthenticated(true);
       setUser(JSON.parse(storedUser));
     }
+    setLoading(false);
   }, []);
 
   // Hàm Login
@@ -61,7 +61,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, login, register, logout }}>
+    <AuthContext.Provider value={{ user,loading, isAuthenticated, login, register, logout }}>
       {children}
     </AuthContext.Provider>
   );
