@@ -1,16 +1,6 @@
 const API_URL = import.meta.env.VITE_API_URL; // Đã đổi tên
 const TOKEN_AUTH = import.meta.env.VITE_TOKEN_AUTH; // Thêm tiền tố VITE_
 
-
-/**
- * Đăng ký tài khoản mới
- * @param {Object} userData - Object chứa thông tin đăng ký
- * @param {string} userData.username
- * @param {string} userData.email
- * @param {string} userData.password
- * @param {string} userData.phone
- * @param {string} userData.dob - Định dạng "YYYY-MM-DD"
- */
 export async function POST_register(userData) {
   try {
     const res = await fetch(`${API_URL}/users/register`, {
@@ -38,11 +28,6 @@ export async function POST_register(userData) {
 }
 
 
-/**
- * Đăng nhập
- * @param {string} username 
- * @param {string} password 
- */
 export async function POST_login(username, password) {
   try {
     const res = await fetch(`${API_URL}/users/login`, {
@@ -71,10 +56,7 @@ export async function POST_login(username, password) {
 }
 
 
-/**
- * Đăng xuất
- * Lưu ý: Sau khi gọi hàm này thành công, nhớ xóa token ở localStorage phía Client
- */
+
 export async function POST_logout() {
   try {
     const res = await fetch(`${API_URL}/users/logout`, {
@@ -85,14 +67,13 @@ export async function POST_logout() {
         // Nếu API cần User Token để xác thực người logout, hãy mở comment dòng dưới:
         // "Authorization": `Bearer ${localStorage.getItem('user_access_token')}`
       },
-      body: "", // curl gửi -d '' nghĩa là body rỗng
+      body: "", 
     });
 
     if (!res.ok) {
       throw new Error(`Logout thất bại: ${res.status}`);
     }
     
-    // Logout thường không trả về data json quan trọng, chỉ cần status 200 là đủ
     return true; 
   } catch (err) {
     console.error("Logout Error:", err.message);
