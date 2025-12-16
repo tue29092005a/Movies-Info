@@ -12,34 +12,36 @@ import {
 import { Outlet } from "react-router-dom";
 import Search_movieGrid from "@/movies_display/MovieGrid";
 export default function Layout() {
+
   return (
     <>
       <Header />
       <Nav_bar />
       <Outlet />
       <Footer />
-    </>
+</>
   );
 }
 export function Header() {
+  const { toggleTheme} = useTheme();
   return (
-    <div className="flex flex-row justify-around m-1">
+    <div className={`flex flex-row justify-around p-1 `}>
       <p>23120398</p>
       <h1>Movies Info</h1>
       <div className="flex flex-row justify-around">
-        <Switch id="dark_mode" />
+        <Switch id="dark_mode" onClick={toggleTheme} />
         <Label htmlFor="dark_mode">Change dark mode</Label>
       </div>
     </div>
   );
 }
 export function Nav_bar() {
+
   return (
-    <div className="flex flex-row justify-between m-1">
+    <div className={`flex flex-row justify-between p-1 `}>
       <Link to="/">
         <House />
       </Link>
-
       <SearchForm />
     </div>
   );
@@ -50,6 +52,8 @@ export function Dashboard_movie() {
   const query = searchParams.get("q");
   const page = parseInt(searchParams.get("page")) || 1;
   const limit = parseInt(searchParams.get("limit")) || 12;
+
+  // lay currentPage
   // neu co query thi hien thi cai moi
   if (query) {
     return (
@@ -64,8 +68,20 @@ export function Dashboard_movie() {
   }
   //hien thi cai cu
   return (
-    <>
-      <div className="p-5">
+    <NoQuery_Dashboard/>
+  );
+}
+export function Footer() {
+  return (
+    <div className="flex flex-row justify-center m-1">
+      <p>23120398</p>
+    </div>
+  );
+}
+export function NoQuery_Dashboard()
+{
+  return <>
+  <div className="p-5">
         <Display_topMovie />
       </div>
 
@@ -77,13 +93,5 @@ export function Dashboard_movie() {
         <h2 className="pl-20 pb-5 font-bold text-3xl">Top rating</h2>
         <Display_topRating />
       </div>
-    </>
-  );
-}
-export function Footer() {
-  return (
-    <div className="flex flex-row justify-center m-1">
-      <p>23120398</p>
-    </div>
-  );
+  </>
 }

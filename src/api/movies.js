@@ -148,7 +148,7 @@ export async function GET_movieReviews(
 export async function GET_searchMovies(query, page = 1, limit = 12) {
   try {
     const res = await fetch(
-      `${API_URL}/movies/search?q=${query}&page=${page}&${limit}=10`,
+      `${API_URL}/movies/search?q=${query}&page=${page}&limit=${limit}`,
       {
         headers: {
           accept: "application/json",
