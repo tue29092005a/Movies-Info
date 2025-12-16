@@ -34,7 +34,7 @@ export async function GET_persons(page = 1, limit = 10) {
 
 /**
  * Lấy thông tin chi tiết của một Person theo ID
- * @param {string} personId - ID của person (VD: 'nm0000122')
+ * @param {string} personId
  */
 export async function GET_personDetail(personId) {
   try {

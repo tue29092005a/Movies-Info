@@ -16,9 +16,7 @@ export default function MovieDetail({ movie }) {
 
   return (
     <div className="container mx-auto py-8 px-4 md:px-8 max-w-7xl">
-      {/* --- HERO SECTION --- */}
       <div className="flex flex-col md:flex-row gap-8 mb-8">
-        {/* Poster Ảnh */}
         <div className="shrink-0 mx-auto md:mx-0 w-62.5 md:w-75">
           <img
             src={movie.image}
@@ -48,7 +46,6 @@ export default function MovieDetail({ movie }) {
             </div>
           </div>
 
-          {/* Ratings */}
           <div className="flex flex-wrap gap-4">
             {movie.ratings?.imDb && (
               <div className="flex items-center gap-2 bg-yellow-500/10 px-3 py-1 rounded-md border border-yellow-500/20">

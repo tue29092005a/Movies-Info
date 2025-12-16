@@ -1,7 +1,6 @@
-// src/context/AuthContext.jsx
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { POST_login, POST_register } from "@/api/user/user";
-import { useNavigate } from "react-router-dom"; // Nếu dùng Router
+import { useNavigate } from "react-router-dom"; 
 
 const AuthContext = createContext();
 
@@ -20,7 +19,7 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   }, []);
 
-  // Hàm Login
+
   const login = async (username, password) => {
     try {
       const data = await POST_login(username, password);

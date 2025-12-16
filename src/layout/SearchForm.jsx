@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Search } from "lucide-react"; // Icon kính lúp
+import { Search } from "lucide-react"; 
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,9 +14,9 @@ import {
   FormItem,
 } from "@/components/ui/form";
 
-// 1. Định nghĩa Schema với Zod
+
 const formSchema = z.object({
-  query: z.string().optional(), // Cho phép rỗng nếu muốn clear search
+  query: z.string().optional(), 
   
 });
 

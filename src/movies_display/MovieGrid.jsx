@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { GET_searchMovies } from "@/api/movies"; // Hàm gọi API search của bạn
+import { GET_searchMovies } from "@/api/movies";
 import { MovieCard } from "@/movies_display/MovieCard";
 import { useSearchParams } from "react-router-dom";
 import { App_Pagination } from "@/pagination/Pagination";

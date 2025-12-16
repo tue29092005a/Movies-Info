@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { useAuth } from "./AuthContext"; // Để biết khi nào User Login
+import { useAuth } from "./AuthContext"; 
 import { GET_userFavorites, POST_addToFavorites, DELETE_removeFromFavorites } from "@/api/user/profile";
 
 
@@ -7,9 +7,6 @@ const FavoritesContext = createContext();
 
 export const FavoritesProvider = ({ children }) => {
   const { isAuthenticated } = useAuth();
-
-  
-
   const [favoriteIds, setFavoriteIds] = useState(() => {
     const local = localStorage.getItem("favorites_local");
     return local ? JSON.parse(local) : [];

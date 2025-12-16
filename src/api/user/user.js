@@ -14,7 +14,7 @@ export async function POST_register(userData) {
     });
 
     if (!res.ok) {
-      // Có thể đọc lỗi chi tiết từ server nếu có
+
       const errorData = await res.json().catch(() => ({}));
       throw new Error(errorData.message || `Lỗi đăng ký: ${res.status}`);
     }
@@ -64,8 +64,7 @@ export async function POST_logout() {
       headers: {
         "accept": "*/*",
         "x-app-token": TOKEN_AUTH,
-        // Nếu API cần User Token để xác thực người logout, hãy mở comment dòng dưới:
-        // "Authorization": `Bearer ${localStorage.getItem('user_access_token')}`
+
       },
       body: "", 
     });

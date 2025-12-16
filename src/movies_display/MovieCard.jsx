@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Play, Star } from "lucide-react"; 
-import { Badge } from "@/components/ui/badge"; // Nếu bạn đã cài badge, hoặc dùng thẻ span thường
+
 import { AddToFavoriteBtn } from "@/user/AddFavoriteButton";
 export function MovieCard({ movie }) {
 
