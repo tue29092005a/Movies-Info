@@ -16,6 +16,7 @@ import { useTheme } from "./context/ThemeContext";
 import RegisterPage from "./auth/Register";
 import LoginPage from "./auth/Login";
 import UserProfile from "./user/UserProfile";
+import UserFavorites from "./user/UserFavorites";
 export default function App() {
   const { isDark } = useTheme();
   return (
@@ -29,10 +30,14 @@ export default function App() {
             <Route index element={<Dashboard_movie />} />
             <Route path="/movies/:id" element={<Display_MovieDetail />} />
             <Route path="/persons/:id" element={<Display_CharacterDetail />} />
+            <Route path="/user">
+                <Route path="login" element={<LoginPage/>}/>
+                <Route path="register" element={<RegisterPage/>}/>
+                <Route path="profile" element={<UserProfile/>}/>
+                <Route path="favorites" element={<UserFavorites/>}/>
+            </Route>
           </Route>
-          <Route path="/user/login" element={<LoginPage/>}/>
-          <Route path="/user/register" element={<RegisterPage/>}/>
-          <Route path="/user/profile" element={<UserProfile/>}/>
+          
         </Routes>
 
     </div>

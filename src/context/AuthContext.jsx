@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
-
+  
   // Kiểm tra đăng nhập khi F5 trang
   useEffect(() => {
     const token = localStorage.getItem("user_access_token");
