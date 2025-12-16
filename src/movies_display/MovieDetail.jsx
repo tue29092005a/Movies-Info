@@ -70,8 +70,8 @@ export default function MovieDetail({ movie }) {
 
           {/* Genres */}
           <div className="flex flex-wrap gap-2">
-            {movie.genres?.map((genre) => (
-              <Badge key={genre}  variant="secondary" className="text-sm px-3 py-1">
+            {movie.genres?.map((genre,id) => (
+              <Badge key={id}   variant="secondary" className="text-sm px-3 py-1">
                 {genre}
               </Badge>
             ))}

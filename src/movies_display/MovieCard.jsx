@@ -9,6 +9,7 @@ export function MovieCard({ movie }) {
 
   const { id, title, image, short_description, rate, genres,image_url } = movie;
   const {isAuthenticated} =useAuth();
+  console.log(isAuthenticated)
   return (
     <Link to={`/movies/${id}`} className="block h-full w-full">
 
