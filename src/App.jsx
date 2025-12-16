@@ -13,7 +13,8 @@ import { Display_MovieDetail } from "./movies_display/MovieDetail";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Display_CharacterDetail } from "./character/DetailCharacter";
 import { useTheme } from "./context/ThemeContext";
-
+import RegisterPage from "./auth/Register";
+import LoginPage from "./auth/Login";
 export default function App() {
   const { isDark } = useTheme();
   return (
@@ -22,15 +23,16 @@ export default function App() {
         isDark ? "bg-gray-800 border-gray-700" : "bg-white border-gray-200"
       } `}
     >
-      <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Dashboard_movie />} />
             <Route path="/movies/:id" element={<Display_MovieDetail />} />
             <Route path="/persons/:id" element={<Display_CharacterDetail />} />
           </Route>
+          <Route path="/user/login" element={<LoginPage/>}/>
+          <Route path="/user/register" element={<RegisterPage/>}/>
         </Routes>
-      </BrowserRouter>
+
     </div>
   );
 }
