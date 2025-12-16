@@ -12,13 +12,14 @@ import { useParams } from "react-router-dom";
 import { GET_movieDetail } from "@/api/movies";
 import { CharacterCard, Link_CharacterCard } from "@/character/CharacterCard";
 import { AddToFavoriteBtn } from "@/user/AddFavoriteButton";
+import { useAuth } from "@/context/AuthContext";
 export default function MovieDetail({ movie }) {
   if (!movie) return null;
-
+  const {isAuthenticated} = useAuth();
   return (
     <div className="container mx-auto py-8 px-4 md:px-8 max-w-7xl">
       <div className="flex flex-col md:flex-row gap-8 mb-8">
-        <AddToFavoriteBtn movie={movie}/>
+        {isAuthenticated && <AddToFavoriteBtn movie={movie}/>}
         <div className="shrink-0 mx-auto md:mx-0 w-62.5 md:w-75">
           <img
             src={movie.image}
@@ -160,8 +161,8 @@ export default function MovieDetail({ movie }) {
         {/* TAB 2: CAST (Diễn viên) */}
         <TabsContent value="cast">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {movie.actors?.map((actor) => (
-                <Link_CharacterCard actor={actor}/>
+            {movie.actors?.map((actor,index) => (
+                <Link_CharacterCard key={index} actor={actor}/>
             ))}
           </div>
         </TabsContent>

@@ -3,16 +3,16 @@ import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Play, Star } from "lucide-react"; 
-
+import { useAuth } from "@/context/AuthContext";
 import { AddToFavoriteBtn } from "@/user/AddFavoriteButton";
 export function MovieCard({ movie }) {
 
   const { id, title, image, short_description, rate, genres,image_url } = movie;
-
+  const {isAuthenticated} =useAuth();
   return (
     <Link to={`/movies/${id}`} className="block h-full w-full">
 
-      <AddToFavoriteBtn movie={movie}/>
+      {isAuthenticated && <AddToFavoriteBtn movie={movie}/> }
       <Card className="group relative h-full w-full overflow-hidden border-0 bg-black/5 shadow-md rounded-lg p-0">
         <CardContent className="p-0  h-full">
           
