@@ -1,5 +1,5 @@
 import { useTheme } from "../context/ThemeContext"; // Import hook
-import { House } from "lucide-react";
+import { House, User } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { SearchForm } from "./SearchForm";
@@ -11,6 +11,7 @@ import {
 } from "@/layout/Carousel_movie";
 import { Outlet } from "react-router-dom";
 import Search_movieGrid from "@/movies_display/MovieGrid";
+import { UserAvatar } from "@/user/UserAvatar";
 export default function Layout() {
 
   return (
@@ -31,6 +32,9 @@ export function Header() {
       <div className="flex flex-row justify-around">
         <Switch id="dark_mode" onClick={toggleTheme} />
         <Label htmlFor="dark_mode">Change dark mode</Label>
+      </div>
+      <div>
+        <UserAvatar/>
       </div>
     </div>
   );
