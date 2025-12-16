@@ -14,22 +14,19 @@ export default function Search_movieGrid({ query, page, limit }) {
     total_pages: 0,
     page_size: 10,
   });
-  // de dieu khien pagination bang searchParams
+
   const handlePageChange = (newPage) => {
     const newUrl = new URLSearchParams(searchParams);
     newUrl.set("page", newPage);
     setSearchParams(newUrl);
   };
-  // Lắng nghe sự thay đổi của query để gọi lại API
+
   useEffect(() => {
     const fetchSearch = async () => {
       setLoading(true);
       try {
-        // Gọi API search với từ khóa
-        // Giả sử API trả về mảng phim
         const data = await GET_searchMovies(query, page, limit);
 
-        // Xử lý dữ liệu tùy theo cấu trúc API của bạn
         const results = Array.isArray(data.data) ? data.data : [];
         const pagi_info = data.pagination;
         setMovies(results);
@@ -50,7 +47,7 @@ export default function Search_movieGrid({ query, page, limit }) {
     if (query) {
       fetchSearch();
     }
-  }, [query,page, limit]); // Chạy lại khi query thay đổi
+  }, [query,page, limit]); 
 
   if (loading) {
     return <div className="text-center py-10">Đang tìm kiếm phim...</div>;
@@ -64,12 +61,10 @@ export default function Search_movieGrid({ query, page, limit }) {
     );
   }
 
-  // RENDER DẠNG GRID (Lưới)
   return (
     <>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {movies.map((movie) => (
-        // Wrapper div để giữ chiều cao đồng đều nếu cần
         <div key={movie.id} className="h-full">
           <MovieCard movie={movie} />
         </div>

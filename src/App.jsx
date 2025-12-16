@@ -15,6 +15,7 @@ import { Display_CharacterDetail } from "./character/DetailCharacter";
 import { useTheme } from "./context/ThemeContext";
 import RegisterPage from "./auth/Register";
 import LoginPage from "./auth/Login";
+import UserProfile from "./user/UserProfile";
 export default function App() {
   const { isDark } = useTheme();
   return (
@@ -31,6 +32,7 @@ export default function App() {
           </Route>
           <Route path="/user/login" element={<LoginPage/>}/>
           <Route path="/user/register" element={<RegisterPage/>}/>
+          <Route path="/user/profile" element={<UserProfile/>}/>
         </Routes>
 
     </div>

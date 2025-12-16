@@ -72,30 +72,7 @@ export async function GET_userFavorites() {
 }
 
 
-/**
- * Lấy danh sách phim yêu thích
- */
-export async function GET_userFavorites() {
-  try {
-    const userToken = localStorage.getItem("user_access_token");
-    if (!userToken) return null;
 
-    const res = await fetch(`${API_URL}/users/favorites`, {
-      method: "GET",
-      headers: {
-        "accept": "application/json",
-        "x-app-token": TOKEN_AUTH,
-        "Authorization": `Bearer ${userToken}`
-      },
-    });
-
-    if (!res.ok) throw new Error(res.status);
-    return await res.json();
-  } catch (err) {
-    console.error("Lỗi lấy Favorites:", err.message);
-    return null;
-  }
-}
 
 /**
  * Thêm phim vào danh sách yêu thích
